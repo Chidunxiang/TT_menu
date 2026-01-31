@@ -296,7 +296,7 @@ async function checkout() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => removeOne(line.id)}
-                          className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
+                          className="w-8 h-8 rounded-full bg-white border border-sky-200 text-sky-600 hover:bg-sky-50 flex items-center justify-center"
                         >
                           <span className="material-icons-round text-[18px]">remove</span>
                         </button>
@@ -305,7 +305,7 @@ async function checkout() {
 
                         <button
                           onClick={() => addOne(line.id)}
-                          className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
+                          className="w-8 h-8 rounded-full bg-white border border-sky-200 text-sky-600 hover:bg-sky-50 flex items-center justify-center"
                         >
                           <span className="material-icons-round text-[18px]">add</span>
                         </button>
