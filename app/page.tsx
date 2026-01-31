@@ -102,15 +102,15 @@ async function checkout() {
         <header className="flex-none px-6 pt-12 pb-4 bg-white z-20 border-b border-gray-100">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
-              <h1 className="text-3xl font-extrabold text-orange-500 tracking-tight">
+              <h1 className="text-3xl font-extrabold text-sky-400 tracking-tight">
                 TT &
               </h1>
               {/* 小小象emoji */}
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-orange-500 shadow-sm bg-orange-50">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-sky-400 shadow-sm bg-sky-50">
                 <img src="/avatar.jpg" alt="avatar" className="w-full h-full object-cover" />
               </div>
 
-              <h1 className="text-3xl font-extrabold text-orange-500 tracking-tight ml-1">
+              <h1 className="text-3xl font-extrabold text-sky-400 tracking-tight ml-1">
                 Menu
               </h1>
             </div>
@@ -121,7 +121,7 @@ async function checkout() {
           </div>
 
           <div className="flex items-center space-x-2 text-sm text-gray-500 font-medium pl-1">
-            <span className="bg-orange-500/10 text-orange-500 px-2 py-0.5 rounded text-xs font-bold">
+            <span className="bg-sky-400/10 text-sky-400 px-2 py-0.5 rounded text-xs font-bold">
               NOTICE
             </span>
             <span>记得按时吃饭 ❤️</span>
@@ -146,15 +146,15 @@ async function checkout() {
                     ].join(" ")}
                   >
                     {active && (
-                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-orange-500 rounded-r-full" />
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-sky-400 rounded-r-full" />
                     )}
 
                     <div
                       className={[
                         "w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-colors",
                         active
-                          ? "bg-orange-100 text-orange-500"
-                          : "bg-gray-100 group-hover:text-orange-500",
+                          ? "bg-sky-100 text-sky-400"
+                          : "bg-gray-100 group-hover:text-sky-400",
                       ].join(" ")}
                     >
                       <span className="material-icons-round text-lg">{c.icon}</span>
@@ -210,18 +210,18 @@ async function checkout() {
                     </div>
 
                     <div className="flex items-center justify-between mt-3">
-                      <span className="inline-flex items-baseline gap-1 text-orange-500 leading-none">
+                      <span className="inline-flex items-baseline gap-1 text-sky-400 leading-none">
                         <span className="text-sm font-semibold opacity-60">$:</span>
                         <span className="text-[22px] font-extrabold tracking-tight">{fmtPrice(it.price)}</span>
                       </span>
 
                       {/* 这里暂时只是UI，下一步接购物车 */}
-                      {/* <button className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/30 active:scale-90 transition-transform">
+                      {/* <button className="w-8 h-8 rounded-full bg-sky-400 text-white flex items-center justify-center shadow-lg shadow-sky-400/30 active:scale-90 transition-transform">
                         <span className="material-icons-round text-sm">add</span>
                       </button> */}
                       <button
                         onClick={() => addToCart({ id: it.id, title: it.title, price: it.price })}
-                        className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/30 active:scale-90 transition-transform"
+                        className="w-8 h-8 rounded-full bg-sky-400 text-white flex items-center justify-center shadow-lg shadow-sky-400/30 active:scale-90 transition-transform"
                       >
                         <span className="material-icons-round text-sm">add</span>
                       </button>
@@ -239,7 +239,7 @@ async function checkout() {
         <div className="absolute bottom-6 right-6 z-30">
           <button
             onClick={() => setCartOpen(true)}
-            className="relative w-14 h-14 bg-gray-900 rounded-full shadow-xl flex items-center justify-center text-white hover:scale-105 transition-transform"
+            className="relative w-14 h-14 bg-white hover:bg-sky-50 rounded-full shadow-xl flex items-center justify-center text-sky-500 hover:scale-105 transition-transform"
           >
             <span className="material-icons-round">shopping_bag</span>
 
@@ -335,7 +335,7 @@ async function checkout() {
                   <button
                     onClick={checkout}
                     disabled={cartCount === 0}
-                    className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-extrabold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-4 py-2 rounded-xl bg-sky-400 hover:bg-sky-500 text-white text-sm font-extrabold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Checkout
                   </button>
