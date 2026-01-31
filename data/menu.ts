@@ -16,7 +16,7 @@ export type MenuItem = {
   desc: string;
   price: number;
   imageUrl: string;
-  badge?: "POPULAR" | "少油" | "Chef's favorite"|"能吃"|"感觉吃不饱";
+badge?: "POPULAR" | "SPICY" | "少油" | "Chef's favorite" | "能吃" | "感觉吃不饱";
 };
 
 export const MENU: MenuItem[] = [
