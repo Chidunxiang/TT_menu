@@ -24,7 +24,7 @@ export const MENU: MenuItem[] = [
     category: "entre",
     title: "Rainbow Poke Bowl",
     desc: "Fresh salmon, avocado, cucumber, edamame, and corn served over sushi rice.",
-    price: 14.5,
+    price: Infinity,
     imageUrl:
       "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=80",
     badge: "POPULAR",
@@ -34,7 +34,7 @@ export const MENU: MenuItem[] = [
     category: "entre",
     title: "Herb Chicken Plate",
     desc: "Grilled herb chicken breast with roasted veggies and quinoa.",
-    price: 12.9,
+    price: Infinity,
     imageUrl:
       "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1200&q=80",
   },
@@ -43,7 +43,7 @@ export const MENU: MenuItem[] = [
     category: "entre",
     title: "Sichuan Beef",
     desc: "Tender beef slices stir-fried with chili peppers and scallions.",
-    price: 16.0,
+    price: Infinity,
     imageUrl:
       "https://images.unsplash.com/photo-1604908176997-125f25cc500f?w=1200&q=80",
     badge: "SPICY",

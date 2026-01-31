@@ -7,6 +7,93 @@ export default function Page() {
   const [selected, setSelected] = useState<CategoryKey>("entre");
 
   const items = useMemo(() => MENU.filter((x) => x.category === selected), [selected]);
+  type CartLine = {
+  id: string;
+  title: string;
+  price: number;
+  qty: number;
+};
+
+const [cart, setCart] = useState<Record<string, CartLine>>({});
+const [cartOpen, setCartOpen] = useState(false);
+
+const cartCount = useMemo(
+  () => Object.values(cart).reduce((sum, line) => sum + line.qty, 0),
+  [cart]
+);
+
+const cartTotal = useMemo(
+  () => Object.values(cart).reduce((sum, line) => sum + line.qty * line.price, 0),
+  [cart]
+);
+
+const fmtPrice = (n: number) => (Number.isFinite(n) ? n.toFixed(2) : "∞");
+
+function addToCart(it: { id: string; title: string; price: number }) {
+  setCart((prev) => {
+    const existing = prev[it.id];
+    const nextQty = (existing?.qty ?? 0) + 1;
+    return {
+      ...prev,
+      [it.id]: { id: it.id, title: it.title, price: it.price, qty: nextQty },
+    };
+  });
+}
+
+function removeOne(id: string) {
+  setCart((prev) => {
+    const existing = prev[id];
+    if (!existing) return prev;
+    if (existing.qty <= 1) {
+      const { [id]: _, ...rest } = prev;
+      return rest;
+    }
+    return { ...prev, [id]: { ...existing, qty: existing.qty - 1 } };
+  });
+}
+
+function addOne(id: string) {
+  setCart((prev) => {
+    const existing = prev[id];
+    if (!existing) return prev;
+    return { ...prev, [id]: { ...existing, qty: existing.qty + 1 } };
+  });
+}
+
+function clearCart() {
+  setCart({});
+}
+
+async function checkout() {
+  if (cartCount === 0) return;
+
+  const payload = {
+    createdAt: new Date().toISOString(),
+    category: selected,
+    items: Object.values(cart).map((l) => ({
+      id: l.id,
+      title: l.title,
+      price: l.price,
+      qty: l.qty,
+    })),
+  };
+
+  const res = await fetch("/api/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    alert(`Checkout failed. ${txt || ""}`.trim());
+    return;
+  }
+
+  alert("Order sent ✅");
+  clearCart();
+  setCartOpen(false);
+}
 
   return (
     <div className="bg-white antialiased transition-colors duration-200">
@@ -19,7 +106,7 @@ export default function Page() {
                 TT &
               </h1>
               {/* 小小象emoji */}
-              <div className="w-13 h-13 rounded-full overflow-hidden border-2 border-orange-500 shadow-sm bg-orange-50">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-orange-500 shadow-sm bg-orange-50">
                 <img src="/avatar.jpg" alt="avatar" className="w-full h-full object-cover" />
               </div>
 
@@ -123,12 +210,19 @@ export default function Page() {
                     </div>
 
                     <div className="flex items-center justify-between mt-3">
-                      <span className="font-extrabold text-lg text-orange-500">
-                        ${it.price.toFixed(2)}
+                      <span className="inline-flex items-baseline gap-1 text-orange-500 leading-none">
+                        <span className="text-sm font-semibold opacity-60">$:</span>
+                        <span className="text-[22px] font-extrabold tracking-tight">{fmtPrice(it.price)}</span>
                       </span>
 
                       {/* 这里暂时只是UI，下一步接购物车 */}
-                      <button className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/30 active:scale-90 transition-transform">
+                      {/* <button className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/30 active:scale-90 transition-transform">
+                        <span className="material-icons-round text-sm">add</span>
+                      </button> */}
+                      <button
+                        onClick={() => addToCart({ id: it.id, title: it.title, price: it.price })}
+                        className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/30 active:scale-90 transition-transform"
+                      >
                         <span className="material-icons-round text-sm">add</span>
                       </button>
                     </div>
@@ -143,13 +237,113 @@ export default function Page() {
 
         {/* 购物车按钮固定（下一步接state） */}
         <div className="absolute bottom-6 right-6 z-30">
-          <button className="relative w-14 h-14 bg-gray-900 rounded-full shadow-xl flex items-center justify-center text-white hover:scale-105 transition-transform">
+          <button
+            onClick={() => setCartOpen(true)}
+            className="relative w-14 h-14 bg-gray-900 rounded-full shadow-xl flex items-center justify-center text-white hover:scale-105 transition-transform"
+          >
             <span className="material-icons-round">shopping_bag</span>
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-white">
-              0
-            </span>
+
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-white">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
+
+        {/* Cart Drawer */}
+        {cartOpen && (
+          <>
+            {/* backdrop */}
+            <div
+              className="absolute inset-0 bg-black/30 z-40"
+              onClick={() => setCartOpen(false)}
+            />
+
+            {/* sheet */}
+            <div className="absolute left-0 right-0 bottom-0 z-50 bg-white rounded-t-3xl shadow-2xl p-4">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-lg font-extrabold text-gray-900">Your Order</h3>
+                <button
+                  className="p-2 rounded-full hover:bg-gray-100"
+                  onClick={() => setCartOpen(false)}
+                >
+                  <span className="material-icons-round">close</span>
+                </button>
+              </div>
+
+              {cartCount === 0 ? (
+                <div className="text-sm text-gray-500 py-8 text-center">
+                  赶快点餐，大b象为您服务 for infinite time 🐘
+                </div>
+              ) : (
+                <div className="max-h-[45vh] overflow-y-auto no-scrollbar space-y-3">
+                  {Object.values(cart).map((line) => (
+                    <div key={line.id} className="flex items-center justify-between gap-3">
+                      <div className="flex-1">
+                        <div className="font-bold text-gray-900 leading-tight">
+                          {line.title}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          <span className="inline-flex items-baseline gap-1 leading-none">
+                            <span className="text-xs font-semibold opacity-60">$:</span>
+                            <span className="text-sm font-semibold">{fmtPrice(line.price)}</span>
+                          </span>{" "}
+                          each
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => removeOne(line.id)}
+                          className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
+                        >
+                          <span className="material-icons-round text-[18px]">remove</span>
+                        </button>
+
+                        <span className="w-6 text-center font-bold">{line.qty}</span>
+
+                        <button
+                          onClick={() => addOne(line.id)}
+                          className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
+                        >
+                          <span className="material-icons-round text-[18px]">add</span>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-4 border-t pt-3 flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-gray-500">Total</div>
+                  <div className="text-lg font-extrabold text-gray-900 inline-flex items-baseline gap-1 leading-none">
+                    <span className="text-xs font-semibold opacity-60">$:</span>
+                    <span>{fmtPrice(cartTotal)}</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={clearCart}
+                    className="px-3 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-bold"
+                  >
+                    Clear
+                  </button>
+
+                  <button
+                    onClick={checkout}
+                    disabled={cartCount === 0}
+                    className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-extrabold disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
