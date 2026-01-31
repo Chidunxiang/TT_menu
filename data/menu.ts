@@ -57,7 +57,7 @@ export const MENU: MenuItem[] = [
     price: Infinity,
     imageUrl:
       "可乐鸡翅.jpg",
-    badge: "popular",
+    badge: "POPULAR",
   },
   {
     id: "lajiaochaorou",
