@@ -1,15 +1,21 @@
-
 "use client";
 
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function UnlockPage() {
-  const sp = useSearchParams();
-  const nextPath = sp.get("next") || "/";
-
   const [code, setCode] = useState("");
   const [err, setErr] = useState("");
+  const [nextPath, setNextPath] = useState("/");
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const next = params.get("next");
+      if (next) setNextPath(next);
+    } catch {
+      // ignore
+    }
+  }, []);
 
   async function submit() {
     setErr("");
