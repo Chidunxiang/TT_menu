@@ -117,17 +117,17 @@ export default function Page() {
         <header className="flex-none px-6 pt-12 pb-4 bg-white z-20 border-b border-gray-100">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
-              <h1 className="text-3xl font-extrabold text-sky-400 tracking-tight">TT &</h1>
+              <h1 className="text-3xl font-extrabold text-pink-400 tracking-tight">TT &</h1>
 
               {/* avatar (tap 5x easter egg) */}
               <div
                 onClick={tapAvatar}
-                className="w-12 h-12 rounded-full overflow-hidden border-2 border-sky-400 shadow-sm bg-sky-50 cursor-pointer"
+                className="w-12 h-12 rounded-full overflow-hidden border-2 border-pink-400 shadow-sm bg-pink-50 cursor-pointer"
               >
                 <img src="/avatar.jpg" alt="avatar" className="w-full h-full object-cover" />
               </div>
 
-              <h1 className="text-3xl font-extrabold text-sky-400 tracking-tight ml-1">Menu</h1>
+              <h1 className="text-3xl font-extrabold text-pink-400 tracking-tight ml-1">Menu</h1>
             </div>
 
             <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
@@ -136,7 +136,7 @@ export default function Page() {
           </div>
 
           <div className="flex items-center space-x-2 text-sm text-gray-500 font-medium pl-1">
-            <span className="bg-sky-400/10 text-sky-400 px-2 py-0.5 rounded text-xs font-bold">
+            <span className="bg-pink-400/10 text-pink-400 px-2 py-0.5 rounded text-xs font-bold">
               大B象温馨提示
             </span>
             <span>记得按时吃饭 ❤️</span>
@@ -159,13 +159,13 @@ export default function Page() {
                     ].join(" ")}
                   >
                     {active && (
-                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-sky-400 rounded-r-full" />
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-pink-400 rounded-r-full" />
                     )}
 
                     <div
                       className={[
                         "w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-colors",
-                        active ? "bg-sky-100 text-sky-400" : "bg-gray-100 group-hover:text-sky-400",
+                        active ? "bg-pink-100 text-pink-400" : "bg-gray-100 group-hover:text-pink-400",
                       ].join(" ")}
                     >
                       <span className="material-icons-round text-lg">{c.icon}</span>
@@ -217,14 +217,14 @@ export default function Page() {
                     </div>
 
                     <div className="flex items-center justify-between mt-3">
-                      <span className="inline-flex items-baseline gap-1 text-sky-400 leading-none">
+                      <span className="inline-flex items-baseline gap-1 text-pink-400 leading-none">
                         <span className="text-sm font-semibold opacity-60">$:</span>
                         <span className="text-[22px] font-extrabold tracking-tight">{fmtPrice(it.price)}</span>
                       </span>
 
                       <button
                         onClick={() => addToCart({ id: it.id, title: it.title, price: it.price })}
-                        className="w-8 h-8 rounded-full bg-sky-400 text-white flex items-center justify-center shadow-lg shadow-sky-400/30 active:scale-90 transition-transform"
+                        className="w-8 h-8 rounded-full bg-pink-400 text-white flex items-center justify-center shadow-lg shadow-pink-400/30 active:scale-90 transition-transform"
                       >
                         <span className="material-icons-round text-sm">add</span>
                       </button>
@@ -242,7 +242,7 @@ export default function Page() {
         <div className="absolute bottom-6 right-6 z-30">
           <button
             onClick={() => setCartOpen(true)}
-            className="relative w-14 h-14 bg-white hover:bg-sky-50 rounded-full shadow-xl flex items-center justify-center text-sky-500 hover:scale-105 transition-transform"
+            className="relative w-14 h-14 bg-white hover:bg-pink-50 rounded-full shadow-xl flex items-center justify-center text-pink-500 hover:scale-105 transition-transform"
           >
             <span className="material-icons-round">shopping_bag</span>
 
@@ -289,7 +289,7 @@ export default function Page() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => removeOne(line.id)}
-                          className="w-8 h-8 rounded-full bg-white border border-sky-200 text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+                          className="w-8 h-8 rounded-full bg-white border border-pink-200 text-pink-600 hover:bg-pink-50 flex items-center justify-center"
                         >
                           <span className="material-icons-round text-[18px]">remove</span>
                         </button>
@@ -298,7 +298,7 @@ export default function Page() {
 
                         <button
                           onClick={() => addOne(line.id)}
-                          className="w-8 h-8 rounded-full bg-white border border-sky-200 text-sky-600 hover:bg-sky-50 flex items-center justify-center"
+                          className="w-8 h-8 rounded-full bg-white border border-pink-200 text-pink-600 hover:bg-pink-50 flex items-center justify-center"
                         >
                           <span className="material-icons-round text-[18px]">add</span>
                         </button>
@@ -328,7 +328,7 @@ export default function Page() {
                   <button
                     onClick={checkout}
                     disabled={cartCount === 0}
-                    className="px-4 py-2 rounded-xl bg-sky-400 hover:bg-sky-500 text-white text-sm font-extrabold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-4 py-2 rounded-xl bg-pink-400 hover:bg-pink-500 text-white text-sm font-extrabold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Checkout
                   </button>
@@ -361,7 +361,7 @@ export default function Page() {
               </div>
 
               <button
-                className="mt-4 w-full py-2 rounded-xl bg-sky-400 hover:bg-sky-500 text-white font-extrabold"
+                className="mt-4 w-full py-2 rounded-xl bg-pink-400 hover:bg-pink-500 text-white font-extrabold"
                 onClick={() => setShowEgg(false)}
               >
                 宝知道了

@@ -36,7 +36,7 @@ export default function UnlockPage() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6 font-['Nunito']">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6">
-        <div className="text-2xl font-extrabold text-sky-500">TT Menu</div>
+        <div className="text-2xl font-extrabold text-pink-500">TT Menu</div>
         <div className="mt-1 text-sm text-gray-500">输入密码进入（only for her 💙）</div>
 
         <div className="mt-4">
@@ -45,14 +45,14 @@ export default function UnlockPage() {
             onChange={(e) => setCode(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && submit()}
             placeholder="Passcode"
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-200"
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-200"
           />
           {err && <div className="mt-2 text-sm text-red-500">{err}</div>}
         </div>
 
         <button
           onClick={submit}
-          className="mt-4 w-full py-2 rounded-xl bg-sky-400 hover:bg-sky-500 text-white font-extrabold"
+          className="mt-4 w-full py-2 rounded-xl bg-pink-400 hover:bg-pink-500 text-white font-extrabold"
         >
           Enter
         </button>
