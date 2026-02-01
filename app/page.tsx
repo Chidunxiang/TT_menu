@@ -267,7 +267,7 @@ export default function Page() {
                     </div>
 
                     <span className={active ? "text-xs font-bold text-gray-800" : "text-xs font-medium"}>
-                      {c.label}z
+                      {c.label}
                     </span>
                   </button>
                 );
