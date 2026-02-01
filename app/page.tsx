@@ -90,7 +90,7 @@ async function checkout() {
     return;
   }
 
-  alert("Order sent ✅");
+  alert("大b象:稍等奥老婆，别急，马上就好!🌹");
   clearCart();
   setCartOpen(false);
 }
@@ -122,7 +122,7 @@ async function checkout() {
 
           <div className="flex items-center space-x-2 text-sm text-gray-500 font-medium pl-1">
             <span className="bg-sky-400/10 text-sky-400 px-2 py-0.5 rounded text-xs font-bold">
-              NOTICE
+              大B象温馨提示
             </span>
             <span>记得按时吃饭 ❤️</span>
           </div>
@@ -327,7 +327,7 @@ async function checkout() {
                 <div className="flex gap-2">
                   <button
                     onClick={clearCart}
-                    className="px-3 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-bold"
+                    className="px-3 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-white text-sm font-bold transition-colors"
                   >
                     Clear
                   </button>
