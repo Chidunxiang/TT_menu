@@ -37,7 +37,7 @@ export default function UnlockPage() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6 font-['Nunito']">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6">
         <div className="text-2xl font-extrabold text-pink-500">TT Menu</div>
-        <div className="mt-1 text-sm text-gray-500">输入密码进入（only for her 💙）</div>
+        <div className="mt-1 text-sm text-gray-500">输入密码进入（only for TT 💗）</div>
 
         <div className="mt-4">
           <input
