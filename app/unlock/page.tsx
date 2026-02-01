@@ -1,0 +1,56 @@
+
+"use client";
+
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+
+export default function UnlockPage() {
+  const sp = useSearchParams();
+  const nextPath = sp.get("next") || "/";
+
+  const [code, setCode] = useState("");
+  const [err, setErr] = useState("");
+
+  async function submit() {
+    setErr("");
+    const res = await fetch("/api/unlock", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+    });
+
+    if (!res.ok) {
+      setErr("密码不对 😤");
+      return;
+    }
+
+    window.location.href = nextPath;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6 font-['Nunito']">
+      <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6">
+        <div className="text-2xl font-extrabold text-sky-500">TT Menu</div>
+        <div className="mt-1 text-sm text-gray-500">输入密码进入（only for her 💙）</div>
+
+        <div className="mt-4">
+          <input
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && submit()}
+            placeholder="Passcode"
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-200"
+          />
+          {err && <div className="mt-2 text-sm text-red-500">{err}</div>}
+        </div>
+
+        <button
+          onClick={submit}
+          className="mt-4 w-full py-2 rounded-xl bg-sky-400 hover:bg-sky-500 text-white font-extrabold"
+        >
+          Enter
+        </button>
+      </div>
+    </div>
+  );
+}

@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     const resend = new Resend(resendKey);
 
     await resend.emails.send({
-      // Resend 测试阶段可以先用这个 from（如果你后面绑了自己的域名再换）
+      
       from: "TT Menu <onboarding@resend.dev>",
       to: [toEmail],
       subject: "TT Menu — New Order ✅",
