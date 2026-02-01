@@ -20,6 +20,9 @@ export async function POST(req: Request) {
     if (!toEmail) return new Response("Missing ORDER_NOTIFY_EMAIL", { status: 500 });
 
     const body = await req.json();
+    const comment = String(body?.comment ?? "").trim();
+    const commentBlock = comment ? `\nComment:\n${comment}` : "";
+    
 
     const createdAt = String(body?.createdAt ?? "");
     const category = String(body?.category ?? "");
@@ -37,6 +40,7 @@ export async function POST(req: Request) {
       `New order ✅\n` +
       (createdAt ? `Time: ${createdAt}\n` : "") +
       (category ? `Category: ${category}\n` : "") +
+      commentBlock +
       `\nItems:\n${lines}\n` +
       `\nTotal: $: ${fmtPrice(total)}\n`;
 

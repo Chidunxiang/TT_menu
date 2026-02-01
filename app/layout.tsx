@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="font-['Nunito'] bg-gray-100">
+      <body className="font-['Nunito'] bg-black">
         {children}
         <Analytics />
       </body>
