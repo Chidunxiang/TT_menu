@@ -273,7 +273,7 @@ export const MENU: MenuItem[] = [
     id: "jifanjiang",
     category: "entre",
     title: "鸡蛋酱",
-    desc: " ",
+    desc: "the Queen said:香香浓浓配蔬菜",
     price: Infinity,
     imageUrl:
       "鸡蛋酱.jpg",
