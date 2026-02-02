@@ -69,16 +69,7 @@ export const MENU: MenuItem[] = [
       "辣椒炒肉.jpg",
     
   },
-  {
-    id: "kiss",
-    category: "entre",
-    title: "亲亲",
-    desc: "送给厨师，建议多点（也别点太多我怕出bug）",
-    price: Infinity,
-    imageUrl:
-      "kiss.png",
-    badge: "Chef's favorite",
-  },
+
 //   {
 //     id: "mifan",
 //     category: "carb",
@@ -278,6 +269,26 @@ export const MENU: MenuItem[] = [
     imageUrl:
       "鸡蛋酱.jpg",
 
+  },
+  {
+    id: "niuroubanmian",
+    category: "entre",
+    title: "牛肉丝拌面",
+    desc: "牛肉板面来咯，实物可能与图片不符",
+    price: Infinity,
+    imageUrl:
+      "牛肉板面.jpg",
+
+  },
+    {
+    id: "kiss",
+    category: "entre",
+    title: "亲亲",
+    desc: "送给厨师，建议多点（也别点太多我怕出bug）",
+    price: Infinity,
+    imageUrl:
+      "kiss.png",
+    badge: "Chef's favorite",
   },
 
 
