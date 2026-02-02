@@ -209,6 +209,16 @@ export const MENU: MenuItem[] = [
       "kiss.png",
     badge: "Chef's favorite",
   },
+   {
+    id: "tangxindan",
+    category: "healthy",
+    title: "溏心蛋",
+    desc: "ezez",
+    price: Infinity,
+    imageUrl:
+      "溏心蛋.jpg",
+
+  },
   {
     id: "molinaibai",
     category: "drink",
@@ -257,6 +267,17 @@ export const MENU: MenuItem[] = [
     imageUrl:
       "芒果三明治.jpg",
    
+  },
+ 
+  {
+    id: "jifanjiang",
+    category: "entre",
+    title: "鸡蛋酱",
+    desc: " ",
+    price: Infinity,
+    imageUrl:
+      "鸡蛋酱.jpg",
+
   },
 
 
