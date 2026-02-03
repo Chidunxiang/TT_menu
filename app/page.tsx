@@ -43,6 +43,23 @@ export default function Page() {
   const [commentOpen, setCommentOpen] = useState(false);
   const [commentDraft, setCommentDraft] = useState("");
   const [commentSaved, setCommentSaved] = useState("");
+  // Intro video splash (plays once each time the page is opened)
+  const [introOpen, setIntroOpen] = useState(true);
+  const [introFade, setIntroFade] = useState(false);
+
+  function closeIntro() {
+    setIntroFade(true);
+    setTimeout(() => setIntroOpen(false), 300); // wait fade-out then remove
+  }
+
+  // Safety timeout: if video doesn't end (network / iOS), auto-close after 3.5s
+  useEffect(() => {
+    if (!introOpen) return;
+    const t = setTimeout(() => closeIntro(), 3500);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [introOpen]);
+
 
   const [eggCount, setEggCount] = useState(0);
   const [showEgg, setShowEgg] = useState(false);
@@ -160,6 +177,25 @@ export default function Page() {
   return (
     <div className="bg-pink-50 antialiased transition-colors duration-200">
       <div className="flex flex-col h-[100dvh] max-w-md mx-auto relative overflow-hidden bg-pink-100 shadow-2xl font-['Nunito']">
+        {/* Intro Video Splash (put your video in /public/intro.mp4) */}
+        {introOpen && (
+          <div
+            className={[
+              "absolute inset-0 z-[999] flex items-center justify-center bg-black transition-opacity duration-300",
+              introFade ? "opacity-0" : "opacity-100",
+            ].join(" ")}
+            onClick={closeIntro}
+          >
+            <video
+              src="/intro.mp4"
+              autoPlay
+              playsInline
+              muted
+              onEnded={closeIntro}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
         {/* Header固定 */}
         <header className="flex-none px-6 pt-12 pb-4 bg-pink-50 z-20 border-b border-gray-100">
           <div className="flex items-center justify-between mb-2">
