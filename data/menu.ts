@@ -274,7 +274,7 @@ export const MENU: MenuItem[] = [
     id: "niuroubanmian",
     category: "entre",
     title: "牛肉丝拌面",
-    desc: "牛肉板面来咯，实物可能与图片不符",
+    desc: "牛肉拌面来咯，实物可能与图片不符",
     price: Infinity,
     imageUrl:
       "牛肉板面.jpg",
