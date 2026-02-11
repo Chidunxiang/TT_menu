@@ -288,7 +288,7 @@ export const MENU: MenuItem[] = [
     price: Infinity,
     imageUrl:
       "牛.jpg",
-    badge: "Chef's favorite",
+  
   },
     {
     id: "kiss",
