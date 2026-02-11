@@ -301,7 +301,16 @@ export const MENU: MenuItem[] = [
     badge: "Chef's favorite",
   },
 
-
+  {
+    id: "chayan",
+    category: "drink",
+    title: "蜜桃乌龙",
+    desc: "厨师感觉一般，但老婆说好喝",
+    price: Infinity,
+    imageUrl:
+      "laopo.jpg",
+  
+  },
 
   
 
