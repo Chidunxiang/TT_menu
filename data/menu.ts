@@ -280,6 +280,16 @@ export const MENU: MenuItem[] = [
       "牛肉板面.jpg",
 
   },
+   {
+    id: "慢烤牛肩肉",
+    category: "entre",
+    title: "慢烤牛肩肉",
+    desc: "香啊 嫩啊",
+    price: Infinity,
+    imageUrl:
+      "牛.jpg",
+    badge: "Chef's favorite",
+  },
     {
     id: "kiss",
     category: "entre",
@@ -290,6 +300,7 @@ export const MENU: MenuItem[] = [
       "kiss.png",
     badge: "Chef's favorite",
   },
+
 
 
   
